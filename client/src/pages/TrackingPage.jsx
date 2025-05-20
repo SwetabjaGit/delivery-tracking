@@ -11,11 +11,15 @@ import PartnerMap from '../components/PartnerMap';
 // import LiveUpdates from '../components/LiveUpdates';
 
 
-const TrackingPage = ({ socket }) => {
+const TrackingPage = ({ socket, setNavbarTitle }) => {
   const order = getCurrentOrder();
-  const [activeTab, setActiveTab] = useState('track');
+  const [activeTab, setActiveTab] = useState('Customer Map');
   const [showNotification, setShowNotification] = useState(false);
   
+  const activateTab = (tab) => {
+    setActiveTab(tab);
+    setNavbarTitle(tab);
+  }
 
   return (
     <div className="mx-auto bg-gray-50 min-h-screen">
@@ -37,24 +41,24 @@ const TrackingPage = ({ socket }) => {
           <div className="flex rounded-lg overflow-hidden border border-gray-200 bg-white">
             <button 
               className={`px-4 py-2 text-sm ${
-                activeTab === 'track' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'
+                activeTab === 'Customer Map' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'
               }`}
-              onClick={() => setActiveTab('track')}
+              onClick={() => activateTab('Customer Map')}
             >
               Customer Map
             </button>
             <button 
               className={`px-4 py-2 text-sm ${
-                activeTab === 'details' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'
+                activeTab === 'Partner Map' ? 'bg-orange-500 text-white' : 'bg-white text-gray-700'
               }`}
-              onClick={() => setActiveTab('details')}
+              onClick={() => activateTab('Partner Map')}
             >
-              PartnerMap
+              Partner Map
             </button>
           </div>
         </div>
 
-        {activeTab === 'track' ? (
+        {activeTab === 'Customer Map' ? (
           <>
             <DeliveryMap order={order} socket={socket} />
           </>

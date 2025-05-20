@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import TrackingPage from './pages/TrackingPage';
@@ -12,15 +12,20 @@ function App() {
 
   socket.emit('joinOrderRoom', orderId);
 
+  const [navbarTitle, setNavbarTitle] = useState("Customer Map");
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar title={navbarTitle} />
       <div className="flex">
         <div className="hidden lg:block">
           <Sidebar collapsed={false} />
         </div>
         <div className="flex-grow transition-all duration-300">
-          <TrackingPage socket={socket} />
+          <TrackingPage 
+            socket={socket}
+            setNavbarTitle={setNavbarTitle}
+          />
         </div>
       </div>
     </div>

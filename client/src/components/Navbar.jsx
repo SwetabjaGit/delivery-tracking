@@ -1,7 +1,7 @@
 import React from 'react';
 import { Share2, ArrowLeft } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ title }) => {
 
   const handleShare = () => {
     console.log("Handle Share");
@@ -13,7 +13,9 @@ const Navbar = () => {
         {/* <button className="p-2">
           <ArrowLeft className="w-6 h-6" />
         </button> */}
-        <h1 className="text-xl font-semibold">Track Order</h1>
+        <h1 className="text-xl font-semibold">
+          {title}
+        </h1>
         {/* <button className="p-2" onClick={handleShare}>
           <Share2 className="w-6 h-6" />
         </button> */}
