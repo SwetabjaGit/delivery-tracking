@@ -8,7 +8,7 @@ const orderId = 'ORDER123';
 
 
 function App() {
-  const socket = io(`${import.meta.env.VITE_BASEURL}:${import.meta.env.VITE_PORT}`);
+  const socket = io(`${import.meta.env.VITE_BASEURL}`);
 
   socket.emit('joinOrderRoom', orderId);
 
